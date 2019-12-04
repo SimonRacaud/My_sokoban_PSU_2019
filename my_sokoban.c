@@ -14,13 +14,25 @@ void clean(map_t *map)
     free(map);
 }
 
+void clean_char(map_t *map)
+{
+    for (int i = 0; i < map->size - 1; i++) {
+        if (map->map[i] == 'P' || map->map[i] == 'X')
+            map->map[i] = ' ';
+    }
+}
+
 int my_sokoban(char *path_map)
 {
     map_t *map = read_map(path_map);
+    int ret;
 
     if (!map)
         return EXIT_ERROR;
-    run(map);
+    ret = run(map);
     clean(map);
+    if (ret == EXIT_RELOAD) {
+        my_sokoban(path_map);
+    }
     return EXIT_SUCCESS;
 }

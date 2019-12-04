@@ -16,22 +16,27 @@ int is_object_pos(int pos, int *list_obj_pos, int size_list)
     return 0;
 }
 
+static void move_box(map_t *map, int src, int dest)
+{
+    for (int i = 0; i < map->nb_box; i++) {
+        if (src == map->box_pos[i]) {
+            map->box_pos[i] = dest;
+            return;
+        }
+    }
+}
+
 int box_check_and_move(map_t *map, int pos, int key)
 {
     int dst = get_destination(map, pos, key);
-    int is_box_pos = is_object_pos(dst, map->box_pos, map->nb_box)
 
-    if (!is_box_pos || map->map[dst] == ' ') {
-        if (is_object_pos(dst, map->storage_pos, map->nb_storage))
+    if (map->map[dst] == 'O' || map->map[dst] == ' ') {
+        if (map->map[dst] == 'O')
             eval_game(map);
-        move_char(map, pos, dst);
+        move_box(map, pos, dst);
+        return 0;
     }
-    return 0;
-}
-
-void move_char(map_t *map, int src, int dest)
-{
-
+    return 1;
 }
 
 void eval_game(map_t *map)

@@ -22,6 +22,10 @@
 #define EXIT_SUCCESS 0
 #define EXIT_RELOAD 42
 #define KEY_SPACE 32
+#define K_DOWN 66
+#define K_UP 65
+#define K_LEFT 68
+#define K_RIGHT 67
 
 typedef struct stat stat_t;
 
@@ -34,11 +38,11 @@ typedef struct map {
     int *box_pos;
     int nb_box;
     int nb_storage;
-    int *storage_pos;
     stat_t stat_file;
 } map_t;
 
 void clean(map_t *map);
+void clean_char(map_t *map);
 int my_sokoban(char *path_map);
 
 map_t *read_map(char *path);
@@ -52,7 +56,6 @@ int get_destination(map_t *map, int pos, int key);
 int is_object_pos(int pos, int *list_obj_pos, int size_list);
 
 int box_check_and_move(map_t *map, int pos, int key);
-void move_char(map_t *map, int src, int dest);
 void eval_game(map_t *map);
 
 #endif

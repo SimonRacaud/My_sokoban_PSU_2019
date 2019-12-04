@@ -13,14 +13,18 @@ static void init_map(map_t *map)
     map->player_pos = -1;
     map->box_pos = NULL;
     map->nb_box = 0;
+    map->nb_storage = 0;
     map->max_width = 0;
     map->max_height = 1;
 }
 
-static int check_char(char c)
+static int check_char(const char *c)
 {
-    if (c == ' ' || c == '\n' || c == '#' || c == 'X' || c == 'O' || c == 'P')
+    if (*c == ' ' || *c == '\n' || *c == '#' || *c == 'O') {
         return EXIT_SUCCESS;
+    } else if (*c == 'X' || *c == 'P') {
+        return EXIT_SUCCESS;
+    }
     return EXIT_ERROR;
 }
 
@@ -31,7 +35,7 @@ static int get_box_and_size(map_t *map)
 
     map->map[map->size] = '\0';
     map->box_pos = malloc(sizeof(int) * map->nb_box);
-    if (!map->box_pos)
+    if (!map->box_pos || map->nb_box == 0)
         return EXIT_ERROR;
     for (int i = 0; map->map[i] != '\0'; i++) {
         if (map->map[i] == '\n' && width > map->max_width)
@@ -44,6 +48,7 @@ static int get_box_and_size(map_t *map)
         }
         width++;
     }
+    clean_char(map);
     return EXIT_SUCCESS;
 }
 
@@ -63,10 +68,10 @@ int check_map(map_t *map)
         } else if (map->map[i] == 'O') {
             map->nb_storage++;
         }
-        if (check_char(map->map[i]) == EXIT_ERROR)
+        if (check_char(&map->map[i]) == EXIT_ERROR)
             return EXIT_ERROR;
     }
-    if (map->nb_box != map->nb_storage || get_box_and_size(map) == EXIT_ERROR)
+    if (get_box_and_size(map) == EXIT_ERROR || map->nb_box != map->nb_storage)
         return EXIT_ERROR;
     return EXIT_SUCCESS;
 }

@@ -5,11 +5,12 @@
 ## Project makefile
 ##
 
-SRC	=	main.c		\
-		file.c		\
-		run.c		\
-		my_sokoban.c	\
-		game_function.c
+SRC	=	main.c			\
+		file.c			\
+		run.c			\
+		my_sokoban.c		\
+		game_function.c		\
+		game_function_ext.c
 
 SRC_UT	=	file.c	\
 		run.c	\

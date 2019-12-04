@@ -18,15 +18,14 @@ void display_map(map_t *map)
         refresh();
         return;
     }
-    for (int i = 0; i < map->size; i++) {
-        if (is_object_pos(dst, map->box_pos, map->nb_box))
+    for (int i = 0; i < map->size - 1; i++) {
+        if (is_object_pos(i, map->box_pos, map->nb_box))
             addch('X');
-        else if (is_object_pos(dst, map->storage_pos, map->nb_storage))
-            addch('O');
+        else if (i == map->player_pos)
+            addch('P');
         else
             addch(map->map[i]);
     }
-    printw(map->map);
     refresh();
 }
 
@@ -35,13 +34,14 @@ int get_user_cmd(map_t *map)
     int c = 0;
 
     while (1) {
-        if (LINES < map->max_height || COLS < map->max_width)
-            display_map(map);
+        display_map(map);
         c = getch();
         if (c == KEY_SPACE)
             return EXIT_RELOAD;
-        if (c == KEY_DOWN || c == KEY_UP || c == KEY_LEFT || c == KEY_RIGHT)
+        if (c == K_DOWN || c == K_UP || c == K_LEFT || c == K_RIGHT) {
             return c;
+        }
+        //clear();
     }
 }
 
@@ -51,13 +51,13 @@ int run(map_t *map)
     int ret = -1;
 
     initscr();
+    display_map(map);
     while (ret != EXIT_RELOAD && ret != EXIT_SUCCESS) {
-        display_map(map);
         key = get_user_cmd(map);
-        //player_check_and_move(map, key);
+        player_check_and_move(map, key);
         if (key == EXIT_RELOAD)
             ret = EXIT_RELOAD;
     }
     endwin();
-    return 0;
+    return ret;
 }
