@@ -1,6 +1,8 @@
 # Created by https://www.gitignore.io/api/c,emacs
 # Edit at https://www.gitignore.io/?templates=c,emacs
 
+bootstrap
+
 ### C ###
 # Prerequisites
 *.d
@@ -107,7 +109,7 @@ flycheck_*.el
 
 ### OTHERS
 NormEZ.rb
-tests/
+#tests/
 *.gcda
 *.gcno
 
