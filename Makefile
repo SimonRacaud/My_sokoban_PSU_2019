@@ -12,9 +12,11 @@ SRC	=	main.c			\
 		game_function.c		\
 		game_function_ext.c
 
-SRC_UT	=	file.c	\
-		run.c	\
-		my_sokoban.c
+SRC_UT	=	file.c			\
+			run.c			\
+			my_sokoban.c		\
+			game_function.c		\
+			game_function_ext.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -33,6 +35,8 @@ LIB:
 
 clean:
 	rm -f  $(OBJ)
+	rm -f  *.gcda
+	rm -f  *.gcno
 
 fclean:	clean
 	rm -f $(NAME)
@@ -40,7 +44,7 @@ fclean:	clean
 re:	fclean all
 
 tests_run:
-	gcc -o $(NAME) $(SRC_UT) tests/test_sokoban.c -I./include -L./lib/my -lmy -lcriterion && ./$(NAME)
+	gcc -o $(NAME) $(SRC_UT) tests/test_sokoban.c -I./include -L./lib/my -lmy -lcriterion --coverage -lncurses && ./$(NAME)
 	make fclean
 
 .PHONY :        clean fclean re

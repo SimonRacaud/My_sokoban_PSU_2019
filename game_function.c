@@ -50,7 +50,7 @@ int get_destination(map_t *map, int pos, int key)
         dest = pos - 1;
     else if (key == K_RIGHT)
         dest = pos + 1;
-    if (dest >= map->size)
+    if (dest >= map->size - 1)
         dest = -1;
     return dest;
 }

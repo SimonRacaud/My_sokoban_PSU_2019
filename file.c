@@ -35,7 +35,7 @@ static int get_box_and_size(map_t *map)
 
     map->map[map->size] = '\0';
     map->box_pos = malloc(sizeof(int) * map->nb_box);
-    if (!map->box_pos || map->nb_box == 0)
+    if (!map->box_pos || map->nb_box == 0 || map->player_pos == -1)
         return EXIT_ERROR;
     for (int i = 0; map->map[i] != '\0'; i++) {
         if (map->map[i] == '\n' && width > map->max_width)
