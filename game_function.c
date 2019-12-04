@@ -7,7 +7,7 @@
 
 #include "my_sokoban.h"
 
-static int get_width_line(const map_t *map, const int line)
+int get_width_line(const map_t *map, const int line)
 {
     int i_line = 1;
     int len = 0;
@@ -24,7 +24,7 @@ static int get_width_line(const map_t *map, const int line)
     return len;
 }
 
-static int get_line(const map_t *map, const int position)
+int get_line(const map_t *map, const int position)
 {
     int i_line = 1;
 
@@ -45,7 +45,7 @@ int get_destination(map_t *map, int pos, int key)
     if (key == K_DOWN)
         dest = pos + get_width_line(map, line_player);
     else if (key == K_UP && line_player > 2)
-        dest = pos - get_width_line(map, line_player);
+        dest = pos - get_width_line(map, line_player - 1);
     if (key == K_LEFT)
         dest = pos - 1;
     else if (key == K_RIGHT)
@@ -55,19 +55,20 @@ int get_destination(map_t *map, int pos, int key)
     return dest;
 }
 
-void player_check_and_move(map_t *map, int key)
+int player_check_and_move(map_t *map, int key)
 {
     int dst = get_destination(map, map->player_pos, key);
-    int cancel_move = 0;
+    int box_status = 0;
 
     if (dst == -1)
-        return;
-    if (is_object_pos(dst, map->box_pos, map->nb_box))
-        cancel_move = box_check_and_move(map, dst, key);
+        return EXIT_ERROR;
+    if (is_box_pos(dst, map->box_pos, map->nb_box))
+        box_status = box_check_and_move(map, dst, key);
     if (map->map[dst] != '#') {
-        if (!cancel_move) {
+        if (box_status != EXIT_ERROR)
             map->player_pos = dst;
-            printw("m \n");
-        }
     }
+    if (box_status == EXIT_END)
+        return EXIT_END;
+    return EXIT_SUCCESS;
 }

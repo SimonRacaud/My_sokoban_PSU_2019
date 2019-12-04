@@ -21,6 +21,8 @@
 #define EXIT_ERROR 84
 #define EXIT_SUCCESS 0
 #define EXIT_RELOAD 42
+#define EXIT_END 1
+
 #define KEY_SPACE 32
 #define K_DOWN 66
 #define K_UP 65
@@ -50,12 +52,14 @@ int check_map(map_t *map);
 
 int run(map_t *map);
 
-void player_check_and_move(map_t *map, int key);
+int player_check_and_move(map_t *map, int key);
 
+int get_width_line(const map_t *map, const int line);
+int get_line(const map_t *map, const int position);
 int get_destination(map_t *map, int pos, int key);
-int is_object_pos(int pos, int *list_obj_pos, int size_list);
+int is_box_pos(int pos, int *list_obj_pos, int size_list);
 
 int box_check_and_move(map_t *map, int pos, int key);
-void eval_game(map_t *map);
+int eval_game(map_t *map);
 
 #endif
