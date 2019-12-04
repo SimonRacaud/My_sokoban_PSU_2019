@@ -13,6 +13,8 @@ static void init_map(map_t *map)
     map->player_pos = -1;
     map->box_pos = NULL;
     map->nb_box = 0;
+    map->max_width = 0;
+    map->max_height = 1;
 }
 
 static int check_char(char c)
@@ -22,18 +24,25 @@ static int check_char(char c)
     return EXIT_ERROR;
 }
 
-static int get_box(map_t *map)
+static int get_box_and_size(map_t *map)
 {
     int idx_box = 0;
+    int width = 0;
 
     map->map[map->size] = '\0';
     map->box_pos = malloc(sizeof(int) * map->nb_box);
     if (!map->box_pos)
         return EXIT_ERROR;
     for (int i = 0; map->map[i] != '\0'; i++) {
+        if (map->map[i] == '\n' && width > map->max_width)
+            map->max_width = width;
         if (map->map[i] == 'X') {
             map->box_pos[idx_box++] = i;
+        } else if (map->map[i] == '\n') {
+            map->max_height++;
+            width = -1;
         }
+        width++;
     }
     return EXIT_SUCCESS;
 }
@@ -44,7 +53,7 @@ int check_map(map_t *map)
     if (map->size == 1)
         return EXIT_ERROR;
     for (int i = 0; map->map[i] != '\0'; i++) {
-         if (map->map[i] == 'P' && map->player_pos == -1) {
+        if (map->map[i] == 'P' && map->player_pos == -1) {
             map->player_pos = i;
         } else if (map->map[i] == 'P') {
             return EXIT_ERROR;
@@ -56,8 +65,8 @@ int check_map(map_t *map)
         }
         if (check_char(map->map[i]) == EXIT_ERROR)
             return EXIT_ERROR;
-     }
-     if (map->nb_box != map->nb_storage || get_box(map) == EXIT_ERROR)
+    }
+    if (map->nb_box != map->nb_storage || get_box_and_size(map) == EXIT_ERROR)
         return EXIT_ERROR;
     return EXIT_SUCCESS;
 }

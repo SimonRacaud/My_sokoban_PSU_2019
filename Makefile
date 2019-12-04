@@ -8,7 +8,8 @@
 SRC	=	main.c		\
 		file.c		\
 		run.c		\
-		my_sokoban.c
+		my_sokoban.c	\
+		game_function.c
 
 SRC_UT	=	file.c	\
 		run.c	\
@@ -24,6 +25,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ) LIB
 	gcc -o $(NAME) $(OBJ) -L./lib/my -lmy -lncurses
+	make clean
 
 LIB:
 	make -C ./lib/my

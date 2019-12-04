@@ -7,7 +7,6 @@
 
 #include "my_sokoban.h"
 
-
 int usage(int status)
 {
     my_putstr("USAGE\n\t./my_sokoban map\nDESCRIPTION\n\t");
