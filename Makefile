@@ -12,13 +12,17 @@ SRC	=	$(DSRC)main.c			\
 		$(DSRC)run.c			\
 		$(DSRC)my_sokoban.c		\
 		$(DSRC)game_function.c		\
-		$(DSRC)game_function_ext.c
+		$(DSRC)player.c			\
+		$(DSRC)box.c			\
+		$(DSRC)eval_game.c
 
 SRC_UT	=	$(DSRC)file.c			\
 		$(DSRC)run.c			\
+		$(DSRC)player.c			\
 		$(DSRC)my_sokoban.c		\
 		$(DSRC)game_function.c		\
-		$(DSRC)game_function_ext.c
+		$(DSRC)box.c			\
+		$(DSRC)eval_game.c
 
 OBJ	=	$(SRC:.c=.o)
 

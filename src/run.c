@@ -54,9 +54,11 @@ int run(map_t *map)
     display_map(map);
     while (ret != EXIT_RELOAD && ret != EXIT_SUCCESS) {
         key = get_user_cmd(map);
-        if (player_check_and_move(map, key) == EXIT_END)
+        if (player_check_and_move(map, key) == EXIT_END) {
+            display_map(map);
+            usleep(100000);
             ret = EXIT_SUCCESS;
-        else if (key == EXIT_RELOAD)
+        } else if (key == EXIT_RELOAD)
             ret = EXIT_RELOAD;
     }
     endwin();

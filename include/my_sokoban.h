@@ -56,9 +56,11 @@ int player_check_and_move(map_t *map, int key);
 int get_width_line(const map_t *map, const int line);
 int get_line(const map_t *map, const int position);
 int get_destination(map_t *map, int pos, int key);
-int is_box_pos(int pos, int *list_obj_pos, int size_list);
 
+int is_box_pos(int pos, int *list_obj_pos, int size_list);
 int box_check_and_move(map_t *map, int pos, int key);
+
 int eval_game(map_t *map);
+int check_deadlock(map_t *map, int pos_box);
 
 #endif

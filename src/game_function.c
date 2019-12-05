@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_my_sokoban_2019
 ** File description:
-** game loop
+** utility functions for the game
 */
 
 #include "my_sokoban.h"
@@ -53,22 +53,4 @@ int get_destination(map_t *map, int pos, int key)
     if (dest >= map->size - 1)
         dest = -1;
     return dest;
-}
-
-int player_check_and_move(map_t *map, int key)
-{
-    int dst = get_destination(map, map->player_pos, key);
-    int box_status = 0;
-
-    if (dst == -1)
-        return EXIT_ERROR;
-    if (is_box_pos(dst, map->box_pos, map->nb_box))
-        box_status = box_check_and_move(map, dst, key);
-    if (map->map[dst] != '#') {
-        if (box_status != EXIT_ERROR)
-            map->player_pos = dst;
-    }
-    if (box_status == EXIT_END)
-        return EXIT_END;
-    return EXIT_SUCCESS;
 }
