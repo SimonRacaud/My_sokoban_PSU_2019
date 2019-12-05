@@ -5,18 +5,20 @@
 ## Project makefile
 ##
 
-SRC	=	main.c			\
-		file.c			\
-		run.c			\
-		my_sokoban.c		\
-		game_function.c		\
-		game_function_ext.c
+DSRC	= ./src/
 
-SRC_UT	=	file.c			\
-		run.c			\
-		my_sokoban.c		\
-		game_function.c		\
-		game_function_ext.c
+SRC	=	$(DSRC)main.c			\
+		$(DSRC)file.c			\
+		$(DSRC)run.c			\
+		$(DSRC)my_sokoban.c		\
+		$(DSRC)game_function.c		\
+		$(DSRC)game_function_ext.c
+
+SRC_UT	=	$(DSRC)file.c			\
+		$(DSRC)run.c			\
+		$(DSRC)my_sokoban.c		\
+		$(DSRC)game_function.c		\
+		$(DSRC)game_function_ext.c
 
 OBJ	=	$(SRC:.c=.o)
 
