@@ -46,6 +46,5 @@ re:	fclean all
 
 tests_run:
 	gcc -o $(NAME) $(SRC_UT) tests/test_sokoban.c -I./include -L./lib/my -lmy -lcriterion --coverage -lncurses && ./$(NAME)
-	make fclean
 
 .PHONY :        clean fclean re
