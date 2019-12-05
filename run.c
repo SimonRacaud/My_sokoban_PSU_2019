@@ -7,14 +7,14 @@
 
 #include "my_sokoban.h"
 
-static const char *resize_msg_g = "Please, increase the size of the terminal.";
-static const int len_r_msg_g = 42;
+static const char *RESIZE_MSG = "Please, increase the size of the terminal.";
+static const int RESIZE_MSG_LEN = 42;
 
 void display_map(map_t *map)
 {
     clear();
     if (LINES <= map->max_height || COLS <= map->max_width) {
-        mvprintw((LINES / 2), (COLS / 2) - (len_r_msg_g / 2), resize_msg_g);
+        mvprintw((LINES / 2), (COLS / 2) - (RESIZE_MSG_LEN / 2), RESIZE_MSG);
         refresh();
         return;
     }
@@ -23,8 +23,9 @@ void display_map(map_t *map)
             addch('X');
         } else if (i == map->player_pos) {
             addch('P');
-        } else
+        } else {
             addch(map->map[i]);
+        }
     }
     refresh();
 }

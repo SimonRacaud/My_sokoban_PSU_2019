@@ -18,16 +18,15 @@
 
 #include <ncurses.h>
 
-#define EXIT_ERROR 84
-#define EXIT_SUCCESS 0
-#define EXIT_RELOAD 42
-#define EXIT_END 1
+static const int EXIT_ERROR = 84;
+static const int EXIT_RELOAD = 42;
+static const int EXIT_END = 1;
 
-#define KEY_SPACE 32
-#define K_DOWN 66
-#define K_UP 65
-#define K_LEFT 68
-#define K_RIGHT 67
+static const int KEY_SPACE = 32;
+static const int K_DOWN = 66;
+static const int K_UP = 65;
+static const int K_LEFT = 68;
+static const int K_RIGHT = 67;
 
 typedef struct stat stat_t;
 

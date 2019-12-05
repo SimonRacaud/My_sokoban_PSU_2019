@@ -29,7 +29,7 @@ static void move_box(map_t *map, int src, int dest)
 static int check_deadlock(map_t *map, int pos_box)
 {
     int line_box = get_line(map, pos_box);
-    int lwidth = get_width_line(map, line_box);
+    int width = get_width_line(map, line_box);
     int have_wall_h = 0;
     int have_wall_v = 0;
 
@@ -38,9 +38,9 @@ static int check_deadlock(map_t *map, int pos_box)
     } else if (map->map[pos_box - 1] == 'X' || map->map[pos_box + 1] == 'X') {
         have_wall_h = 1;
     }
-    if (map->map[pos_box - lwidth] == '#' || map->map[pos_box + lwidth] == '#')
+    if (map->map[pos_box - width] == '#' || map->map[pos_box + width] == '#')
         have_wall_v = 1;
-    if (map->map[pos_box - lwidth] == 'X' || map->map[pos_box + lwidth] == 'X')
+    if (map->map[pos_box - width] == 'X' || map->map[pos_box + width] == 'X')
         have_wall_v = 1;
     if (have_wall_h && have_wall_v)
         return EXIT_END;

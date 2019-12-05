@@ -5,16 +5,15 @@
 ** Test File
 */
 
-
-#include  <criterion/criterion.h>
+#include <criterion/criterion.h>
 #include <criterion/redirect.h>
 
 #include "my_sokoban.h"
 
 void redirect_all_stdout(void)
 {
-        cr_redirect_stdout();
-        cr_redirect_stderr();
+    cr_redirect_stdout();
+    cr_redirect_stderr();
 }
 
 map_t *make_map_from_string(char *str)
