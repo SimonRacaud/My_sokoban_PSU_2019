@@ -38,7 +38,6 @@ SRC	=	my_compute_power_rec.c	\
 		my_strupcase.c		\
 		my_swap.c		\
 		my_printf.c             \
-		my_put_double.c         \
 		my_printf_display.c     \
 		my_printf_disp01.c      \
 		my_printf_disp02.c      \
