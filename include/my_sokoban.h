@@ -20,7 +20,8 @@
 
 static const int EXIT_ERROR = 84;
 static const int EXIT_RELOAD = 42;
-static const int EXIT_END = 1;
+static const int EXIT_FAIL = 1;
+static const int EXIT_WIN = 2;
 
 static const int KEY_SPACE = 32;
 static const int K_DOWN = 66;

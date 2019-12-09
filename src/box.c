@@ -34,10 +34,9 @@ int box_check_and_move(map_t *map, int pos, int key)
     if (!have_box_dest && (map->map[dst] == 'O' || map->map[dst] == ' ')) {
         move_box(map, pos, dst);
         if (map->map[dst] == 'O' && eval_game(map))
-            return EXIT_END;
+            return EXIT_WIN;
         else if (check_deadlock(map, dst))
-            return EXIT_END;
-        return EXIT_SUCCESS;
+            return EXIT_FAIL;
     }
-    return EXIT_ERROR;
+    return EXIT_SUCCESS;
 }

@@ -32,7 +32,7 @@ int my_sokoban(char *path_map)
     ret = run(map);
     clean(map);
     if (ret == EXIT_RELOAD) {
-        my_sokoban(path_map);
+        ret = my_sokoban(path_map);
     }
-    return EXIT_SUCCESS;
+    return ret;
 }

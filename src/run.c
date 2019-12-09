@@ -48,19 +48,21 @@ int get_user_cmd(map_t *map)
 int run(map_t *map)
 {
     int key;
-    int ret = -1;
+    int ret = EXIT_SUCCESS;
 
     initscr();
     display_map(map);
-    while (ret != EXIT_RELOAD && ret != EXIT_SUCCESS) {
+    while (ret == EXIT_SUCCESS) {
         key = get_user_cmd(map);
-        if (player_check_and_move(map, key) == EXIT_END) {
+        ret = player_check_and_move(map, key);
+        if (ret == EXIT_FAIL || ret == EXIT_WIN) {
             display_map(map);
-            usleep(100000);
-            ret = EXIT_SUCCESS;
+            usleep(1000);
         } else if (key == EXIT_RELOAD)
             ret = EXIT_RELOAD;
     }
     endwin();
+    if (ret == EXIT_WIN)
+        ret = EXIT_SUCCESS;
     return ret;
 }

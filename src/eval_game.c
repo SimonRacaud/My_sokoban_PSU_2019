@@ -24,7 +24,7 @@ int check_deadlock(map_t *map, int pos_box)
     if (map->map[pos_box - width] == 'X' || map->map[pos_box + width] == 'X')
         have_wall_v = 1;
     if (have_wall_h && have_wall_v)
-        return EXIT_END;
+        return EXIT_FAIL;
     return EXIT_SUCCESS;
 }
 
@@ -32,7 +32,7 @@ int eval_game(map_t *map)
 {
     for (int i = 0; i < map->nb_box; i++) {
         if (map->map[map->box_pos[i]] == 'O' && i == (map->nb_box - 1)) {
-            return EXIT_END;
+            return EXIT_WIN;
         } else if (map->map[map->box_pos[i]] != 'O')
             break;
     }
