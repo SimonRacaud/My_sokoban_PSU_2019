@@ -66,7 +66,7 @@ Test(my_sokoban, t03)
 
     map = read_map("tests/map09");
     ret = player_check_and_move(map, K_RIGHT);
-    cr_assert_eq(ret, EXIT_END);
+    cr_assert_eq(ret, EXIT_WIN);
     clean(map);
 }
 
@@ -186,6 +186,6 @@ Test(my_sokoban, t15)
 
     map = read_map("tests/map01");
     ret = player_check_and_move(map, 0);
-    cr_assert_eq(ret, EXIT_ERROR);
+    cr_assert_eq(ret, EXIT_SUCCESS);
     clean(map);
 }

@@ -40,8 +40,8 @@ LIB:
 
 clean:
 	rm -f  $(OBJ)
-	rm -f  *.gcda
-	rm -f  *.gcno
+	#rm -f  *.gcda
+	#rm -f  *.gcno
 
 fclean:	clean
 	rm -f $(NAME)
