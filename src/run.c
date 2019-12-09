@@ -57,7 +57,6 @@ int run(map_t *map)
         ret = player_check_and_move(map, key);
         if (ret == EXIT_FAIL || ret == EXIT_WIN) {
             display_map(map);
-            usleep(1000);
         } else if (key == EXIT_RELOAD)
             ret = EXIT_RELOAD;
     }
