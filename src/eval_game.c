@@ -23,7 +23,7 @@ static int check_deadlock_box(map_t *map, int pos_box)
         have_wall_v = 1;
     if (map->map[pos_box - width] == 'X' || map->map[pos_box + width] == 'X')
         have_wall_v = 1;
-    if (have_wall_h && have_wall_v && map->map[pos_box] != 'O')
+    if (have_wall_h && have_wall_v)
         return EXIT_FAIL;
     return EXIT_SUCCESS;
 }
