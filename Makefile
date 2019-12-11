@@ -24,7 +24,8 @@ SRC_UT	=	$(DSRC)file.c			\
 		$(DSRC)game_function.c		\
 		$(DSRC)box.c			\
 		$(DSRC)eval_game.c		\
-		$(DTESTS)test_sokoban.c
+		$(DTESTS)test_sokoban.c	\
+		$(DSRC)file_unit_test.c
 
 OBJ	=	$(SRC:.c=.o)
 

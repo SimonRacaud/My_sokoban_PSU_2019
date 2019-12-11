@@ -10,8 +10,8 @@
 int usage(int status)
 {
     my_putstr("USAGE\n\t./my_sokoban map\nDESCRIPTION\n\t");
-    my_putstr("map  file representing the warehouse map, containing ‘#’ for");
-    my_putstr(" walls,\n\t\t‘P’ for the player, ‘X’ for boxes and ‘O’ for ");
+    my_putstr("map  file representing the warehouse map, containing '#' for");
+    my_putstr(" walls,\n\t\t'P' for the player, 'X' for boxes and 'O' for ");
     my_putstr("storage locations.\n");
     return status;
 }
