@@ -7,7 +7,7 @@
 
 #include "my_sokoban.h"
 
-int check_deadlock(map_t *map, int pos_box)
+static int check_deadlock_box(map_t *map, int pos_box)
 {
     int line_box = get_line(map, pos_box);
     int width = get_width_line(map, line_box);
@@ -23,7 +23,19 @@ int check_deadlock(map_t *map, int pos_box)
         have_wall_v = 1;
     if (map->map[pos_box - width] == 'X' || map->map[pos_box + width] == 'X')
         have_wall_v = 1;
-    if (have_wall_h && have_wall_v)
+    if (have_wall_h && have_wall_v && map->map[pos_box] != 'O')
+        return EXIT_FAIL;
+    return EXIT_SUCCESS;
+}
+
+int check_deadlock(map_t *map)
+{
+    int nb_fail = 0;
+
+    for (int i = 0; i < map->nb_box; i++) {
+        nb_fail += check_deadlock_box(map, map->box_pos[i]);
+    }
+    if (nb_fail == map->nb_box)
         return EXIT_FAIL;
     return EXIT_SUCCESS;
 }

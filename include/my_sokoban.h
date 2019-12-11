@@ -22,6 +22,7 @@ static const int EXIT_ERROR = 84;
 static const int EXIT_RELOAD = 42;
 static const int EXIT_FAIL = 1;
 static const int EXIT_WIN = 2;
+static const int EXIT = -1;
 
 static const int KEY_SPACE = 32;
 static const int K_DOWN = 66;
@@ -62,6 +63,6 @@ int is_box_pos(int pos, int *list_obj_pos, int size_list);
 int box_check_and_move(map_t *map, int pos, int key);
 
 int eval_game(map_t *map);
-int check_deadlock(map_t *map, int pos_box);
+int check_deadlock(map_t *map);
 
 #endif
