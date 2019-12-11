@@ -16,7 +16,7 @@ int usage(int status)
     return status;
 }
 
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
     if (argc == 2 && my_strcmp(argv[1], "-h") == 0) {
         return usage(EXIT_SUCCESS);

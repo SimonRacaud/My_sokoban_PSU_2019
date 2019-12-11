@@ -17,7 +17,7 @@ int player_check_and_move(map_t *map, int key)
     if (is_box_pos(dst, map->box_pos, map->nb_box))
         box_status = box_check_and_move(map, dst, key);
     if (map->map[dst] != '#') {
-        if (box_status != EXIT_ERROR)
+        if (box_status != -1)
             map->player_pos = dst;
     }
     if (box_status == EXIT_WIN || box_status == EXIT_FAIL)

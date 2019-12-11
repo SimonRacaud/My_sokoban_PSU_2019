@@ -37,6 +37,7 @@ int box_check_and_move(map_t *map, int pos, int key)
             return EXIT_WIN;
         else if (check_deadlock(map, dst))
             return EXIT_FAIL;
+        return EXIT_SUCCESS;
     }
-    return EXIT_SUCCESS;
+    return -1;
 }
