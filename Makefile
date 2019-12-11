@@ -49,7 +49,7 @@ fclean:	clean
 
 re:	fclean all
 
-tests_run:
+tests_run: LIB
 	gcc -o $(NAME) $(SRC_UT) -I./include -L./lib/my -lmy -lcriterion --coverage -lncurses && ./$(NAME)
 
 .PHONY :        clean fclean re
