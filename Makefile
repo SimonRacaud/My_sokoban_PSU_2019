@@ -6,6 +6,7 @@
 ##
 
 DSRC	= ./src/
+DTESTS	= ./tests/
 
 SRC	=	$(DSRC)main.c			\
 		$(DSRC)file.c			\
@@ -22,7 +23,8 @@ SRC_UT	=	$(DSRC)file.c			\
 		$(DSRC)my_sokoban.c		\
 		$(DSRC)game_function.c		\
 		$(DSRC)box.c			\
-		$(DSRC)eval_game.c
+		$(DSRC)eval_game.c		\
+		$(DTESTS)test_sokoban.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -40,8 +42,6 @@ LIB:
 
 clean:
 	rm -f  $(OBJ)
-	#rm -f  *.gcda
-	#rm -f  *.gcno
 
 fclean:	clean
 	rm -f $(NAME)
@@ -49,6 +49,6 @@ fclean:	clean
 re:	fclean all
 
 tests_run:
-	gcc -o $(NAME) $(SRC_UT) tests/test_sokoban.c -I./include -L./lib/my -lmy -lcriterion --coverage -lncurses && ./$(NAME)
+	gcc -o $(NAME) $(SRC_UT) -I./include -L./lib/my -lmy -lcriterion --coverage -lncurses && ./$(NAME)
 
 .PHONY :        clean fclean re
